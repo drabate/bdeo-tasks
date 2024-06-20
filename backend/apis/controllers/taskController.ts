@@ -68,7 +68,7 @@ export const updateTask = async (req: Request, res: Response) => {
     }
 
     // We check if the title is modified when the status isn't to-do
-    if (title && task.status !== "to-do") {
+    if (title && (task.status !== "to-do" || status !== "to-do")) {
       return res
         .status(400)
         .json({ error: "Cannot modify title when status changed" });

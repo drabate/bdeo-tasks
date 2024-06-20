@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from "mongoose";
 
 export interface TaskDoc extends Document {
   title: string;
-  description?: string;
+  description: string;
   status: "to-do" | "in-progress" | "done";
 }
 

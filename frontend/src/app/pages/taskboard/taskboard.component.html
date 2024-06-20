@@ -1,5 +1,38 @@
-<div class="bg-red-400" *ngFor="let task of tasks">
-  <p>{{ task.title }}</p>
-  <p>{{ task.description }}</p>
-  <p>{{ task.status }}</p>
+<div class="p-4 flex bg-gray-100 w-full min-h-screen">
+  <div class="flex-1 p-2">
+    <h2 class="mb-5 text-center font-bold p-2">To Do</h2>
+    <app-task
+      *ngFor="let task of toDoTasks"
+      [task]="task"
+      bgColor="border-gray-300"
+      (edit)="editTask($event)"
+      (next)="changeStatus($event)"
+      (delete)="deleteTask($event)"
+    ></app-task>
+  </div>
+  <div class="flex-1 p-2">
+    <h2
+      class="mb-5 text-center font-bold border-l-2 border-r-2 border-black p-2"
+    >
+      In Progress
+    </h2>
+    <app-task
+      *ngFor="let task of inProgressTasks"
+      [task]="task"
+      bgColor="border-blue-300"
+      (edit)="editTask($event)"
+      (next)="changeStatus($event)"
+      (delete)="deleteTask($event)"
+    ></app-task>
+  </div>
+  <div class="flex-1 p-2">
+    <h2 class="mb-5 text-center font-bold p-2">Done</h2>
+    <app-task
+      *ngFor="let task of doneTasks"
+      [task]="task"
+      bgColor="border-green-300"
+      (edit)="editTask($event)"
+      (delete)="deleteTask($event)"
+    ></app-task>
+  </div>
 </div>

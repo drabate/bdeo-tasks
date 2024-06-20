@@ -14,4 +14,16 @@ export class TasksService {
   getAllTasks(): Promise<Task[]> {
     return firstValueFrom(this.httpClient.get<Task[]>(this.taskBaseUrl));
   }
+
+  updateTask(task: Task) {
+    return firstValueFrom(
+      this.httpClient.put(`${this.taskBaseUrl}/${task._id}`, task)
+    );
+  }
+
+  deleteTask(task: Task) {
+    return firstValueFrom(
+      this.httpClient.delete(`${this.taskBaseUrl}/${task._id}`)
+    );
+  }
 }

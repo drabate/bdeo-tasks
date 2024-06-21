@@ -40,7 +40,13 @@ export class UpsertTaskComponent {
     private fb: FormBuilder
   ) {
     this.taskForm = this.fb.group({
-      title: [task?.title, [Validators.required]],
+      title: [
+        {
+          value: task?.title,
+          disabled: task?.status && task?.status !== 'to-do',
+        },
+        [Validators.required],
+      ],
       description: [task?.description, Validators.required],
     });
   }

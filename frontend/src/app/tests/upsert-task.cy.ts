@@ -38,7 +38,7 @@ describe('Task Creation', () => {
 
   it('Title and description are valid when filled', () => {
     cy.get('[formcontrolname="title"]').type('title');
-    cy.get('[formcontrolname="title"]').type('description');
+    cy.get('[formcontrolname="description"]').type('description');
 
     cy.get('mat-form-field.ng-valid')
       .get('[formcontrolname="title"]')

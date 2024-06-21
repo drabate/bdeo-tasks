@@ -26,6 +26,7 @@ For each project (backend and frontend):
 # run
 
 Start your mongoDB server with the default port 27017
+
 For each project, use this command to start the server
 
     npm run start

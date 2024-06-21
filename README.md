@@ -16,17 +16,21 @@ Before starting, make sure you have the following installed:
 # installation
 
 Clone the repository:
-git clone https://github.com/drabate/bdeo-tasks.git
+
+    git clone https://github.com/drabate/bdeo-tasks.git
 
 For each project (backend and frontend):
-npm i
+
+    npm i
 
 # run
 
 For each project, use this command to start the server
-npm run start
+
+    npm run start
 
 # tests
 
 For each project, use this command to start the tests
-npm run test
+
+    npm run test

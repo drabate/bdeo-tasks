@@ -1,36 +1,38 @@
-<div class="p-4 flex bg-gray-100 w-full min-h-screen">
-  <div class="flex-1 p-2">
-    <h2 class="mb-5 text-center font-bold p-2">To Do</h2>
+<div class="p-4 flex bg-blue-200 w-full min-h-screen">
+  <div class="flex-1 p-2 m-2 bg-gray-100 rounded shadow-lg">
+    <div class="flex">
+      <h2 class="mb-5 font-bold p-2 flex-1">To Do</h2>
+
+      <button class="h-11 bg-green-400 rounded p-2 font-semibold">
+        Create
+      </button>
+    </div>
+
     <app-task
       *ngFor="let task of toDoTasks"
       [task]="task"
-      bgColor="border-gray-300"
       (edit)="editTask($event)"
       (next)="changeStatus($event)"
       (delete)="deleteTask($event)"
     ></app-task>
   </div>
-  <div class="flex-1 p-2">
-    <h2
-      class="mb-5 text-center font-bold border-l-2 border-r-2 border-black p-2"
-    >
-      In Progress
-    </h2>
+  <div class="flex-1 p-2 m-2 bg-gray-100 rounded shadow-lg">
+    <h2 class="mb-5 h-[52px] font-bold p-2 flex-1">In Progress</h2>
+
     <app-task
       *ngFor="let task of inProgressTasks"
       [task]="task"
-      bgColor="border-blue-300"
       (edit)="editTask($event)"
       (next)="changeStatus($event)"
       (delete)="deleteTask($event)"
     ></app-task>
   </div>
-  <div class="flex-1 p-2">
-    <h2 class="mb-5 text-center font-bold p-2">Done</h2>
+  <div class="flex-1 p-2 m-2 bg-gray-100 rounded shadow-lg">
+    <h2 class="mb-5 h-[52px] font-bold p-2 flex-1">Done</h2>
+
     <app-task
       *ngFor="let task of doneTasks"
       [task]="task"
-      bgColor="border-green-300"
       (edit)="editTask($event)"
       (delete)="deleteTask($event)"
     ></app-task>

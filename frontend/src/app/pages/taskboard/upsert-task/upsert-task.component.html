@@ -1,14 +1,16 @@
 <div mat-dialog-content>
-  <div class="flex flex-col">
+  <form #form="ngForm" [formGroup]="taskForm" class="flex flex-col">
     <mat-form-field>
-      <input matInput [(ngModel)]="task.title" />
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
     </mat-form-field>
     <mat-form-field class="mt-4">
-      <input matInput [(ngModel)]="task.description" />
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
-  </div>
+  </form>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancelClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="task" cdkFocusInitial>Validate</button>
+  <button mat-button (click)="onValidateClick(form)">Validate</button>
 </div>

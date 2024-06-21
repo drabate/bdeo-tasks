@@ -58,6 +58,25 @@ export class TaskboardComponent implements OnInit {
     }
   }
 
+  createTask() {
+    const dialogRef = this.dialog.open(UpsertTaskComponent, {
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe(async (taskResult) => {
+      if (taskResult) {
+        try {
+          const createdTask = await this.taskService.createTask(taskResult);
+          console.log('createdTask', createdTask);
+          this.tasks.push(createdTask);
+          this.organiseTasks();
+        } catch (error) {
+          this.handleError(error);
+        }
+      }
+    });
+  }
+
   editTask(task: Task) {
     const dialogRef = this.dialog.open(UpsertTaskComponent, {
       data: Object.assign({}, task),

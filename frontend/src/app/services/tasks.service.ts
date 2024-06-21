@@ -15,6 +15,10 @@ export class TasksService {
     return firstValueFrom(this.httpClient.get<Task[]>(this.taskBaseUrl));
   }
 
+  createTask(task: Task): Promise<Task> {
+    return firstValueFrom(this.httpClient.post<Task>(this.taskBaseUrl, task));
+  }
+
   updateTask(task: Task) {
     return firstValueFrom(
       this.httpClient.put(`${this.taskBaseUrl}/${task._id}`, task)

@@ -9,7 +9,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 import { Task } from '../../../models/task';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-upsert-task',
@@ -20,17 +26,48 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './upsert-task.component.html',
   styleUrl: './upsert-task.component.css',
 })
 export class UpsertTaskComponent {
+  taskForm: FormGroup;
+
   constructor(
     public dialogRef: MatDialogRef<UpsertTaskComponent>,
-    @Inject(MAT_DIALOG_DATA) public task: Task
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public task: Task,
+    private fb: FormBuilder
+  ) {
+    this.taskForm = this.fb.group({
+      title: [task?.title, [Validators.required]],
+      description: [task?.description, Validators.required],
+    });
+  }
 
   onCancelClick(): void {
     this.dialogRef.close();
+  }
+
+  onValidateClick(form: any): void {
+    if (this.taskForm.valid) {
+      this.dialogRef.close(
+        this.task
+          ? {
+              _id: this.task._id,
+              status: this.task.status,
+              ...this.taskForm.value,
+            }
+          : this.taskForm.value
+      );
+    }
+  }
+
+  get title() {
+    return this.taskForm.get('title');
+  }
+
+  get description() {
+    return this.taskForm.get('description');
   }
 }

@@ -28,8 +28,7 @@ export class TaskboardComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.tasks = await this.taskService.getAllTasks();
-    this.organiseTasks();
+    this.getTasks();
   }
 
   organiseTasks() {
@@ -38,6 +37,15 @@ export class TaskboardComponent implements OnInit {
       (task) => task.status === 'in-progress'
     );
     this.doneTasks = this.tasks.filter((task) => task.status === 'done');
+  }
+
+  async getTasks() {
+    try {
+      this.tasks = await this.taskService.getAllTasks();
+      this.organiseTasks();
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
   async changeStatus(task: Task) {
@@ -106,8 +114,11 @@ export class TaskboardComponent implements OnInit {
 
   handleError(error: any) {
     console.error(error);
-    if (error instanceof HttpErrorResponse) {
+    // structure when it's a validation error
+    if (error?.error?.error) {
       this.toastr.error(error.error.error);
+    } else {
+      this.toastr.error('An unexpected error occured');
     }
   }
 }

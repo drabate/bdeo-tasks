@@ -13,7 +13,7 @@ import { UpsertTaskComponent } from './upsert-task/upsert-task.component';
   standalone: true,
   imports: [NgFor, TaskComponent],
   templateUrl: './taskboard.component.html',
-  styleUrl: './taskboard.component.css',
+  styleUrl: './taskboard.component.scss',
 })
 export class TaskboardComponent implements OnInit {
   tasks: Task[] = [];

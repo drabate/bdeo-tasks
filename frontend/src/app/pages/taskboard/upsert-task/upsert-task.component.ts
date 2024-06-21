@@ -16,11 +16,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-upsert-task',
   standalone: true,
   imports: [
+    CommonModule,
     MatFormField,
     FormsModule,
     MatInputModule,
@@ -29,7 +31,7 @@ import {
     ReactiveFormsModule,
   ],
   templateUrl: './upsert-task.component.html',
-  styleUrl: './upsert-task.component.css',
+  styleUrl: './upsert-task.component.scss',
 })
 export class UpsertTaskComponent {
   taskForm: FormGroup;

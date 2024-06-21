@@ -8,7 +8,7 @@ import { Task } from '../../../models/task';
   standalone: true,
   imports: [NgIf, NgClass, MatIconModule],
   templateUrl: './task.component.html',
-  styleUrl: './task.component.css',
+  styleUrl: './task.component.scss',
 })
 export class TaskComponent {
   @Input() task: any;
